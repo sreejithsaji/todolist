@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+
+{%block mainblock%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 mt-5 border border-dark" style="box-shadow: 2px 4px 5px; box-shadow: color(srgb red green blue);"" >
+            <form action="" method="post">
+                <center>
+                <h3>Task Edit</h3></center>
+                {%csrf_token%}
+                
+                <label for="">title :</label><br>
+                {{form.title}}
+                <label>status :</label>
+                {{form.status}}
+
+                <button type="submit" class="btn btn-outline-success form-control mb-4 mt-2">Edit</button>
+
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+
+{%endblock%}

@@ -1,0 +1,73 @@
+{%extends 'base.html'%}
+
+{%block mainblock%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 border border-2  p-2  shadow mt-5" style="border-radius: 10px;">
+            <form action="" method="post">
+                {%csrf_token%}
+                <center>
+                    <h2>WELCOME {{request.user}}</h2>
+                    <h7><b>You have {{count}}  tasks to complete</b> </h7>
+                
+                </center>
+              <div class="row mt-2">
+                <div class="col-6">
+                    <label>title :</label><br>
+                    {{form.title}}
+                </div>
+
+                <div class="col-6">
+                    <label>status :</label><br>
+                    <select class="form-control" name="status">
+                        <option value="incomplete"> incomplete</option>
+                    </select>
+
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-12"><button class="btn btn-success mt-3" style="width: 100%; ">Add</button></div>
+              </div>
+
+
+
+                
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <form>
+            <table class="table table-stripped border">
+                <tr>
+                    <th>Title</th>
+                    <th>status</th>
+                    <th>created date</th>
+                    <th colspan="2">Action</th>
+                </tr>
+                {%for t in task%}
+                <tr>
+                    <td>{{t.title}}</td>
+                    <td>{{t.status}}</td>
+                    <td>{{t.created_date}}</td>
+                    <td><a href="{%url 'task-update' t.id%}"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                    <td><a href="{%url 'task-delete' t.id%}"><i class="fa-solid fa-trash"></i></a></td>
+                    
+                </tr>
+                {%endfor%}
+            </table>
+
+
+        </form>
+    </div>
+    <div class="col-3"></div>
+</div>
+
+{%endblock%}
